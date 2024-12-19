@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="node_modules/remixicon/fonts/remixicon.css" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        overflow: hidden;
+      }
+      .main {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        position: relative;
+        background-color: #abc;
+        justify-content: space-evenly;
+        align-items: center;
+        > .todo {
+          width: 50%;
+          background-color: white;
+          box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.594);
+          display: flex;
+          align-content: start;
+          justify-content: center;
+          flex-wrap: wrap;
+          > * {
+            width: 100%;
+            display: flex;
+          }
+          > .tt {
+            justify-content: space-between;
+            align-items: center;
+            > * {
+              font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+              color: black;
+              width: fit-content;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 10px;
+            }
+            > h1 {
+              margin-left: 20px;
+              font-size: 35px;
+            }
+            > div {
+              margin-right: 20px;
+              font-size: 20px;
+              background-image: linear-gradient(
+                90deg,
+                rgba(82, 195, 69, 0.773),
+                rgba(220, 220, 1, 0.783)
+              );
+              padding: 5px;
+              border-radius: 5px;
+            }
+          }
+          > .add_task {
+            justify-content: center;
+            > * {
+              height: 40px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 10px 0;
+              border-radius: 0;
+              outline: none;
+              border: 1px solid rgba(128, 128, 128, 0.395);
+            }
+            > input {
+              width: 80%;
+              font-size: 20px;
+              padding: 10px;
+              &::placeholder {
+                font-size: 14px;
+              }
+            }
+            > button {
+              width: 10%;
+              background-color: rgb(4, 155, 255);
+              transition: 0.4s;
+              cursor: pointer;
+              font-weight: bold;
+              color: white;
+              &:hover {
+                box-shadow: inset 0 0 50px 10px rgba(0, 0, 0, 0.396);
+              }
+            }
+          }
+          > .btn_operators {
+            justify-content: end;
+            width: 90%;
+            > * {
+              margin: 10px 0;
+              padding: 10px;
+              font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+              color: white;
+              font-weight: bold;
+              border: none;
+              transition: 0.4s;
+              cursor: pointer;
+            }
+            /*> .btn1 {
+              background-color: #66bb6a;
+              margin-right: 4px;
+              &:hover {
+                box-shadow: inset 0 0 50px 10px rgba(0, 0, 0, 0.396);
+              }
+            }*/
+            > .btn2 {
+              background-color: tomato;
+              margin-right: 4px;
+              &:hover {
+                box-shadow: inset 0 0 50px 10px rgba(0, 0, 0, 0.396);
+              }
+            }
+            > .btn3 {
+              background-color: rgb(222, 219, 5);
+              &:hover {
+                box-shadow: inset 0 0 50px 10px rgba(0, 0, 0, 0.396);
+              }
+            }
+          }
+          > ul {
+            list-style-type: none;
+            width: 90%;
+            height: 200px;
+            overflow-y: scroll;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: start;
+            > li {
+              width: 100%;
+              display: flex;
+              margin: 0 4px;
+              transition: 1s;
+              > * {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 40px;
+                transition: 0.4s;
+                margin: 10px 0;
+              }
+              > .task {
+                width: 90%;
+                border: 1px solid rgba(128, 128, 128, 0.418);
+                background-color: rgba(128, 128, 128, 0.163);
+                justify-content: start;
+                padding: 10px;
+                overflow: hidden;
+                font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+                &:hover {
+                  background-color: rgba(128, 128, 128, 0.361);
+                }
+              }
+              > span {
+                width: 10%;
+                background-color: tomato;
+                color: white;
+                font-size: 20px;
+                font-weight: bold;
+                &:hover {
+                  background-color: rgb(252, 44, 44);
+                }
+              }
+            }
+          }
+        }
+        > .make_sure {
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.444);
+          position: absolute;
+          display: none;
+          transition: 0.4s;
+          justify-content: center;
+          align-items: center;
+          > .warning {
+            background-color: rgb(255, 255, 255);
+            border: 1px solid rgba(0, 0, 0, 0.584);
+            border-radius: 3px;
+            width: 200px;
+            height: 100px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            > * {
+              width: 100%;
+              height: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            > h6 {
+              font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+              text-align: center;
+              padding: 20px;
+            }
+            > div {
+              > * {
+                padding: 4px 10px;
+                cursor: pointer;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              > .btn4 {
+                margin-right: 10px;
+              }
+              > .btn5 {
+                margin-left: 10px;
+              }
+            }
+          }
+        }
+      }
+      .drag {
+        width: 40%;
+        height: 30%;
+        background-color: white;
+        > .drop {
+          width: 100%;
+          height: 100%;
+          overflow-y: scroll;
+          overflow-x: hidden;
+          flex-wrap: wrap;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          > li {
+            width: 100%;
+            display: flex;
+            margin: 0 4px;
+            transition: 1s;
+            > * {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 40px;
+              transition: 0.4s;
+              margin: 10px 0;
+            }
+            > .task {
+              width: 90%;
+              border: 1px solid rgba(128, 128, 128, 0.418);
+              background-color: rgba(128, 128, 128, 0.163);
+              justify-content: start;
+              padding: 10px;
+              overflow: hidden;
+              font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+              &:hover {
+                background-color: rgba(128, 128, 128, 0.361);
+              }
+            }
+            > span {
+              width: 10%;
+              background-color: tomato;
+              color: white;
+              font-size: 20px;
+              font-weight: bold;
+              &:hover {
+                background-color: rgb(252, 44, 44);
+              }
+            }
+          }
+        }
+      }
+      ul::-webkit-scrollbar {
+        width: 12px; /* Set width of the scrollbar */
+      }
+
+      ul::-webkit-scrollbar-track {
+        background: #f1f1f1; /* Scrollbar track background color */
+        border-radius: 10px; /* Optional rounded corners */
+      }
+
+      ul::-webkit-scrollbar-thumb {
+        background: linear-gradient(
+          45deg,
+          #4caf50,
+          #81c784
+        ); /* Gradient color for the scroll thumb */
+        border-radius: 10px; /* Make thumb rounded */
+      }
+
+      ul::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(
+          45deg,
+          #388e3c,
+          #66bb6a
+        ); /* Darker color on hover */
+      }
+      .check {
+        text-decoration: line-through;
+      }
+      .pos {
+        position: absolute;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="todo">
+        <div class="tt">
+          <h1>Tasks</h1>
+          <div>time / date</div>
+        </div>
+        <div class="add_task">
+          <input type="text" placeholder="Write Your Task" />
+          <button><i class="ri-add-line"></i>ADD</button>
+        </div>
+        <div class="btn_operators">
+          <!-- <button class="btn1"><i class="ri-edit-2-line"></i>Edit</button> -->
+          <button class="btn2">
+            <i class="ri-check-double-line"></i>Clear Completed
+          </button>
+          <button class="btn3">
+            <i class="ri-delete-bin-6-line"></i>Clear All
+          </button>
+        </div>
+        <ul></ul>
+      </div>
+      <div class="make_sure">
+        <div class="warning">
+          <h6>Are you sure you want to clear all your tasks..!!!?</h6>
+          <div>
+            <button class="btn4">Yes</button>
+            <button class="btn5">No</button>
+          </div>
+        </div>
+      </div>
+      <div class="drag">
+        <ul class="drop">
+          <!-- <li>
+            <div class="task">menu</div>
+            <span><i class="ri-close-large-line"></i></span>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      const inp_add = document.querySelector(".main .todo .add_task input");
+      const btn_add = document.querySelector(".main .todo .add_task button");
+      const ul = document.querySelector(".main .todo ul");
+      const time_date = document.querySelector(".main .todo .tt div");
+      const c_all = document.querySelector(".main .todo .btn_operators .btn3");
+      const c_c = document.querySelector(".main .todo .btn_operators .btn2");
+      const e_li = document.querySelector(".main .todo .btn_operators .btn1");
+      const pop_up = document.querySelector(".main .make_sure ");
+      const pp_Yes = document.querySelector(
+        ".main .make_sure .warning div .btn4"
+      );
+      const pp_No = document.querySelector(
+        ".main .make_sure .warning div .btn5"
+      );
+      const ul2 = document.querySelector(".main .drag .drop");
+      //make tasks////////////////////////////////////////////////////////////////////////////////////
+      function addTask() {
+        if (inp_add.value.trim() !== "") {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <div onclick='todocheck(this)' class="task">${inp_add.value}</div>
+            <span onclick = 'delItem(this)'><i class="ri-close-line"></i></span>
+          `;
+          ul.appendChild(li);
+          addDragEventListeners(li);
+          inp_add.value = "";
+          inp_add.focus();
+        } else {
+          alert(
+            "You should write something (e.g., sport / study / work / sleep)"
+          );
+        }
+      }
+
+      btn_add.addEventListener("click", addTask);
+
+      // Enter key press event
+      inp_add.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          addTask();
+        }
+      });
+
+      //singel delete each task when clicked////////////////////////////////////////////////////////////////
+      function delItem(e) {
+        let li = e.parentElement;
+        li.style.width = "0";
+        setTimeout(() => {
+          li.remove();
+        }, 1000);
+      }
+
+      //make a line thorou and make them green while clicked/////////////////////////////////////////////
+      function todocheck(e) {
+        e.classList.toggle("check");
+        if (e.classList.contains("check")) {
+          e.style.backgroundColor = "#4caf4f8d";
+        } else {
+          e.style.backgroundColor = "rgba(128, 128, 128, 0.163)";
+        }
+      }
+
+      //set fa time nad date//////////////////////////////////////////////////////////////////////////////
+      setInterval(() => {
+        let td = new Date();
+
+        // Format the time as HH:MM:SS
+        let time = td.toLocaleTimeString("fa");
+
+        // Format the date as YYYY-MM-DD
+        let date = td.toLocaleDateString("fa");
+
+        // Combine date and time
+        time_date.innerHTML = `[${time}] | [${date}]`;
+      }, 1000);
+
+      //clear all tasks when btn c_all clicked//////////////////////////////////////////////////////////////
+      c_all.addEventListener("click", () => {
+        //open pop_up warning//
+        pop_up.style.display = "flex";
+
+        //check if there is eny task available//
+        if (ul.innerHTML !== "") {
+          //yes button clear and close pop up //
+          pp_Yes.addEventListener("click", (e1) => {
+            ul.innerHTML = "";
+            pop_up.style.display = "none";
+          });
+
+          //no button close pop up//
+          pp_No.addEventListener("click", (e2) => {
+            pop_up.style.display = "none";
+          });
+        } else {
+          alert("You have already no task available to do...!");
+          pop_up.style.display = "none";
+        }
+      });
+
+      //clear all the completed tasks/////////////////////////////////////////////////////////////////////
+      c_c.addEventListener("click", () => {
+        let taskCompleted = false;
+        const tasks = Array.from(ul.children);
+
+        tasks.forEach((li) => {
+          const liTask = li.querySelector(".task"); // Select the task within the current li
+          if (liTask.classList.contains("check")) {
+            li.remove();
+            taskCompleted = true;
+          }
+        });
+
+        if (!taskCompleted) {
+          alert("No completed task is available");
+        }
+      });
+      // make drag and drop on tasks//////////////////////////////////////////////////////////////////////
+
+      let currentDrag = null;
+
+      function addDragEventListeners(li) {
+        li.addEventListener("pointerdown", (e) => {
+          currentDrag = li;
+          window.addEventListener("pointermove", drag);
+        });
+
+        li.addEventListener("pointerup", (e) => {
+          window.removeEventListener("pointermove", drag);
+          drop(e);
+        });
+      }
+
+      function drag(e) {
+        if (!currentDrag) return; // Only proceed if there's an item being dragged
+
+        // Position the dragged item according to the mouse position
+        currentDrag.classList.add("pos");
+        currentDrag.style.transition = "none";
+        currentDrag.style.width = "300px";
+        currentDrag.style.top = e.clientY + "px";
+        currentDrag.style.left = e.clientX + "px";
+      }
+
+      function drop(e) {
+        if (!currentDrag) return; // Ensure an item is being dragged
+
+        const dropAreaRect = ul2.getBoundingClientRect();
+
+        // Check if the dragged item is within the drop area
+        if (
+          e.clientX >= dropAreaRect.left &&
+          e.clientX <= dropAreaRect.right &&
+          e.clientY >= dropAreaRect.top &&
+          e.clientY <= dropAreaRect.bottom
+        ) {
+          // Clone the dragged element and append it to the drop area (ul2)
+          const temp = currentDrag.innerHTML;
+          const li = document.createElement("li");
+          li.innerHTML = temp;
+          ul2.appendChild(li);
+          addDragEventListeners(li); // Add drag event listeners to the new item
+          currentDrag.remove(); // Remove the original item from its initial position
+          currentDrag = null; // Reset the current drag
+        } else {
+          // Revert the item to its original position if it's not dropped inside the drop area
+          currentDrag.classList.remove("pos");
+          currentDrag.style.transition = "0.4s";
+          currentDrag.style.width = "100%";
+          currentDrag.style.top = "auto";
+          currentDrag.style.left = "auto";
+        }
+      }
+    </script>
+  </body>
+</html>
